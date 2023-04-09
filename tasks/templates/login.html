@@ -1,30 +1,22 @@
 {% extends 'display.html' %}
 {% block content %}
+    <h1>Login</h1>
     {% if warning %}
         <p>{{warning}}</p>
     {% endif %}
-    <h1>Signup</h1>
     <form method="post">
-        {% csrf_token %}
+        {% csrf_token %}    
         <div class="inputbox">
             <input type="text" name="username" id="username" required >
-            <label for="">Username</label>
-        </div>
-        <div class="inputbox">
-            <input type="email" name="email" id="email" >
-            <label for="">Email</label>
+            <label for="">Username/Email</label>
         </div>
         <div class="inputbox">
             <input type="password" name="password" id="password">
             <label for="">Password</label>
         </div>
-        <div class="inputbox">
-            <input type="password" name="passwordConfirm" id="passwordConfirm">
-            <label for="">passwordConfirm</label>
-        </div>
         <button>Register</button>
         <div class="login">
-            <p>Do you have a account? <a href="/login/">Login</a> here </p>
+            <p>Do you don't have a account? <a href="/signup/">Signup</a> here </p>
         </div>
     </form>
 {% endblock content %}
