@@ -4,14 +4,27 @@ from django.contrib.auth import login, logout
 from django.db import IntegrityError
 from django.db.models import Q
 
-from .models import UserPass
+from .models import UserPass, Task
 
-
+####  Home  ####
 def HelloWorld(request):
     return render(request, 'home.html')
 
+####  tasks  ####
 def Tasks_login(request):
     return render(request, 'tasks_page.html')
+
+def Create_tasks(request):
+    if request.method == 'POST':
+        try:
+            task = Task(title= request.POST['Title'],description= request.POST['description'],important= request.POST['important'], user= request.user)
+            task.save()
+            return redirect('task')
+        except Exception as error:
+            return render(request, 'createtasks.html', {'error' : f'threre was a mistake: the mistake calls :{error}'})
+    return render(request, 'createtasks.html')
+
+####  Login/register  ####
 
 def Singup(request):
     if request.method == 'POST':

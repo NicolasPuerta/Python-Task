@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.urls import path
-from tasks.views import HelloWorld, Singup, Tasks_login,Logout,Login
+from tasks import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HelloWorld, name='home'),
-    path('signup/', Singup, name='Singup'),
-    path('tasks/', Tasks_login, name='task'),
-    path('logout/', Logout, name='logout'),
-    path('login/', Login, name='login'),
+    path('', views.HelloWorld, name='home'),
+    path('signup/', views.Singup, name='Singup'),
+    path('tasks/', views.Tasks_login, name='task'),
+    path('logout/', views.Logout, name='logout'),
+    path('login/', views.Login, name='login'),
+    path('tasks/create/', views.Create_tasks, name='createtasks'),
 ]

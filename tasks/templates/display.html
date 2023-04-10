@@ -9,6 +9,7 @@
     {% if request.path == '/signup/' %}
     <link rel="stylesheet" href="{% static 'tasks/signup_style.css' %}">
     {% endif %}
+
 </head>
 <body>
     <nav>
@@ -17,6 +18,7 @@
             <li><a href="/tasks">Tasks</a></li>
             {% if user.is_authenticated %}
                 <li><a href="/logout">Logout</a></li>
+                <li><a href="/tasks/create">Create tasks</a></li>
                 {% else %}
                 <li><a href="/login">Login</a></li>
                 <li><a href="/signup">Signup</a></li>
