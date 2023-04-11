@@ -4,14 +4,20 @@
     <link rel="stylesheet" href="{% static 'tasks/modal_task.css' %}">
 {% endblock css %}
 {% block content %}
-    <h1>tasks</h1>
+    <h1>tasks Pending</h1>
     {% comment %} <form action="" method='POST'>
         {% csrf_token %} {% endcomment %}
-        <div class="container">
+    <div class="container">
         {% for task in tasks %}
         <div class="card"> 
             <div>
                 <h4>Important level {{task.important}}</h4>
+                <form  action="{% url 'taskcomplete' %}" method="POST">
+                    {% csrf_token %}
+                    <button name="id" value="{{task.id}}" class="btn">
+                        complete    
+                    </button>
+                </form>
             </div>
             <h2>{{task.title}}</h2>
             <p>{{task.description|truncatechars:100}}</p>
@@ -19,8 +25,8 @@
             <a href="{% url 'task' %}?id={{task.id}}" class="btn-modal">see more</a>
             {% comment %} <button name="value" value="{{task.id}}" class="btn-modal">see more</button> {% endcomment %}
         </div>
-            {% endfor %}
-        </div>
+        {% endfor %}
+    </div>
     {% comment %} </form> {% endcomment %}
         {% if person %}
             <div class="container-modal">

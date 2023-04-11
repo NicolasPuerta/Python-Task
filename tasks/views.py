@@ -1,8 +1,9 @@
-from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.shortcuts import redirect, render,get_object_or_404
+from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib.auth import login, logout
 from django.db import IntegrityError
 from django.db.models import Q
+from django.utils import timezone
 
 from .models import UserPass, Task
 
@@ -19,11 +20,12 @@ ImportanciaL={
     'M':"Medium",
     'H':"High"
 }
+
 def Tasks_login(request):
-    tasks = Task.objects.filter(user=request.user).order_by('-important', 'created')
+    tasks = Task.objects.filter(user=request.user, datecompleted__isnull=True).order_by('-important', 'created')
     ## Forma 2: url ##
     if request.GET.get('id'):
-        id = int(request.GET.get('id'))
+        id = int(request.GET.get('id')) ## obtener un dato por la url de forma que no se obligatorio ##
         user = tasks.get(id=id)
         user.important = ImportanciaL[user.important]
         return render(request, 'tasks_page.html',{'tasks': tasks, 'person' : user})
@@ -35,6 +37,10 @@ def Tasks_login(request):
     #     user.important = ImportanciaL[user.important]
     #     return render(request, 'tasks_page.html',{'tasks': tasks, 'person' : user})
     return render(request, 'tasks_page.html',{'tasks': tasks})
+
+def Tasks_completed(request):
+    tasks = Task.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-important', 'created')
+    return render(request, 'tasks_completed.html',{'tasks': tasks})
 
 def Create_tasks(request):
     if request.method == 'POST':
@@ -55,6 +61,14 @@ def Update_task(request, id):
         task.save()
         return redirect('task')
     return render(request, 'updatetask.html', {'task': task})
+
+def Completed_task(request):
+    if request.method == 'POST':
+        task = Task.objects.get(pk=request.POST['id'],user=request.user)
+        task.datecompleted = timezone.now()
+        task.save()
+        return redirect('task')
+    return redirect('home')
 
 ####  Login/register  ####
 
