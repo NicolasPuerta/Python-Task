@@ -21,14 +21,19 @@ ImportanciaL={
 }
 def Tasks_login(request):
     tasks = Task.objects.filter(user=request.user).order_by('-important', 'created')
-    if request.method == 'POST':
-        if 'value' in request.POST:
-            id = int(request.POST['value'])
-            user = tasks.get(id=id)
-            user.important = ImportanciaL[user.important]
-            return render(request, 'tasks_page.html',{'tasks': tasks, 'person' : user})
-        else:
-            print(request.POST['Edit'])
+    ## Forma 2: url ##
+    if request.GET.get('id'):
+        id = int(request.GET.get('id'))
+        user = tasks.get(id=id)
+        user.important = ImportanciaL[user.important]
+        return render(request, 'tasks_page.html',{'tasks': tasks, 'person' : user})
+    ## Forma 1: form ## 
+
+    # if request.method == 'POST':
+    #     id = int(request.POST['value'])
+    #     user = tasks.get(id=id)
+    #     user.important = ImportanciaL[user.important]
+    #     return render(request, 'tasks_page.html',{'tasks': tasks, 'person' : user})
     return render(request, 'tasks_page.html',{'tasks': tasks})
 
 def Create_tasks(request):
@@ -40,6 +45,16 @@ def Create_tasks(request):
         except Exception as error:
             return render(request, 'createtasks.html', {'error' : f'threre was a mistake: the mistake calls :{error}'})
     return render(request, 'createtasks.html')
+
+def Update_task(request, id):
+    task = Task.objects.get(id=id)
+    if request.method == 'POST':
+        task.important = request.POST['important']
+        task.description = request.POST['description']
+        task.title = request.POST['Title']
+        task.save()
+        return redirect('task')
+    return render(request, 'updatetask.html', {'task': task})
 
 ####  Login/register  ####
 

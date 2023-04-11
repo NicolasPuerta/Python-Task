@@ -4,7 +4,8 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-.btn-modal {
+.btn-modal, .footer-modal a {
+    text-decoration: none;
     font-size: 15px;
     padding: 5px;
     height: 30px;
@@ -15,11 +16,13 @@
     cursor: pointer;
     transition: all 500ms ease;
 }
-
-.btn-modal:hover {
+.btn-modal{
+    width: 80px;
+    display: block;
+}
+.btn-modal:hover, .footer-modal a:hover {
     background-color: rgb(16, 88, 88);
-    padding: 7px;
-    }
+}
 
 .container-modal {
     width: 100vw;
@@ -80,8 +83,10 @@
     display: flex;
     justify-content: space-between;
 }
-.footer-modal button{
-    margin-right: 10px;
+.footer-modal a{
+    margin-right: 17px;
     padding: 7px;
 }
-
+.footer-modal h5{
+    margin-right: 20px;
+}

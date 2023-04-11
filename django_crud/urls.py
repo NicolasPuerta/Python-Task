@@ -10,5 +10,6 @@ urlpatterns = [
     path('tasks/', views.Tasks_login, name='task'),
     path('logout/', views.Logout, name='logout'),
     path('login/', views.Login, name='login'),
-    path('tasks/create/', views.Create_tasks, name='createtasks'),
+    path('task/create/', views.Create_tasks, name='createtasks'),
+    path('task/update/<int:id>/', views.Update_task, name='taskupdate'),
 ]

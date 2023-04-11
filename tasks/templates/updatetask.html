@@ -1,0 +1,25 @@
+{% extends 'display.html' %}
+{% block content %}
+<h1>Update task {{task.title}} </h1>
+<form method="post">
+    {% csrf_token %}    
+    <div class="inputbox">
+        <input type="text" name="Title" id="Title" required >
+        <label for="">Title</label>
+    </div>
+    <div class="inputbox">
+        <textarea name="description" id="description" cols="40" rows="10"></textarea>
+        <label for="">Description</label>
+    </div>
+    <div class="inputbox">
+        <label for="">Important</label>
+        <select name="important" id="important" required>
+            <option value="" selected disabled hidden>Choose here</option>
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+        </select>
+    </div>
+    <button>Update tasks</button>
+</form>
+{% endblock content %}
