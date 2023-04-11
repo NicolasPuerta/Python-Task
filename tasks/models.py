@@ -11,9 +11,9 @@ class UserPass(AbstractBaseUser):
 
 class Task(models.Model):
     IMPORTANT_CHOICES = [
-        ('L', 'Low'),
-        ('M', 'Medium'),
-        ('H', 'High')
+        (1, 'Low'),
+        (2, 'Medium'),
+        (3, 'High')
     ]
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)

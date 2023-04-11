@@ -5,21 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    {% load static %}
+    {% comment %} {% load static %}
     {% if request.path == '/signup/' %}
     <link rel="stylesheet" href="{% static 'tasks/signup_style.css' %}">
-    {% endif %}
-
+    {% endif %}  {% endcomment %}
+    {% block css %}
+    {% endblock css %}
 </head>
 <body>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/tasks">Tasks</a></li>
             {% if user.is_authenticated %}
-                <li><a href="/logout">Logout</a></li>
+                <li><a href="/tasks">Tasks</a></li>
                 <li><a href="/tasks/create">Create tasks</a></li>
-                {% else %}
+                <li><a href="/logout">Logout</a></li>
+            {% else %}
                 <li><a href="/login">Login</a></li>
                 <li><a href="/signup">Signup</a></li>
             {% endif %}

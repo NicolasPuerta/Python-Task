@@ -11,8 +11,25 @@ def HelloWorld(request):
     return render(request, 'home.html')
 
 ####  tasks  ####
+ImportanciaL={
+    '1':"Lower",
+    '2':"Medium",
+    '3':"High",
+    'L':"Lower",
+    'M':"Medium",
+    'H':"High"
+}
 def Tasks_login(request):
-    return render(request, 'tasks_page.html')
+    tasks = Task.objects.filter(user=request.user).order_by('-important', 'created')
+    if request.method == 'POST':
+        if 'value' in request.POST:
+            id = int(request.POST['value'])
+            user = tasks.get(id=id)
+            user.important = ImportanciaL[user.important]
+            return render(request, 'tasks_page.html',{'tasks': tasks, 'person' : user})
+        else:
+            print(request.POST['Edit'])
+    return render(request, 'tasks_page.html',{'tasks': tasks})
 
 def Create_tasks(request):
     if request.method == 'POST':
