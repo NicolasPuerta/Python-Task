@@ -4,12 +4,14 @@
 <form method="post">
     {% csrf_token %}    
     <div class="inputbox">
-        <input type="text" name="Title" id="Title" required >
+        <input type="text" name="Title" id="Title"  >
         <label for="">Title</label>
+        <input type="checkbox" name="Titleischange" id="Titleischange">
     </div>
     <div class="inputbox">
-        <textarea name="description" id="description" cols="40" rows="10"></textarea>
+        <textarea name="description" id="description" cols="40" rows="10"></textarea >
         <label for="">Description</label>
+        <input type="checkbox" name="descriptionischange" id="descriptionischange">
     </div>
     <div class="inputbox">
         <label for="">Important</label>
@@ -19,6 +21,7 @@
             <option value="2">Medium</option>
             <option value="3">High</option>
         </select>
+        <input type="checkbox" name="importantischange" id="Titleischange">
     </div>
     <button>Update tasks</button>
 </form>
