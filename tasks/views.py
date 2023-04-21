@@ -1,5 +1,4 @@
-from django.shortcuts import redirect, render,get_object_or_404
-from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout
 from django.db import IntegrityError
 from django.db.models import Q
@@ -91,7 +90,7 @@ def Singup(request):
             try:
                 user = UserPass(username=request.POST['username'], email=request.POST['email'], password=request.POST['password'])
                 user.save()
-                login(request, user) # crea la cockie del login
+                login(request, user) 
                 return redirect('task')
             except IntegrityError:
                 return render(request, 'sign_up.html',{'warning' : "username alredy exists"})
@@ -109,7 +108,7 @@ def Login(request):
         try:
             person = UserPass.objects.get(Q(username=request.POST['username']) | Q(email=request.POST['username']))
             if(person.password == request.POST['password']):
-                login(request, person) # crea la cockie del login
+                login(request, person)
                 return redirect('task')
             else:
                 return render(request, 'login.html',{'warning' : 'password is incorrect'})

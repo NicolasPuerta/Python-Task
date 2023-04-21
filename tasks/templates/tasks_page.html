@@ -2,9 +2,12 @@
 {% block css %}
     {% load static %}   
     <link rel="stylesheet" href="{% static 'tasks/modal_task.css' %}">
+    <link rel="stylesheet" href="{% static 'tasks/style-task.css' %}">
 {% endblock css %}
+{% block logo %}
+<h1>tasks</h1>
+{% endblock logo %}
 {% block content %}
-    <h1>tasks</h1>
     {% comment %} <form action="" method='POST'>
         {% csrf_token %} {% endcomment %}
     <div class="container">
@@ -19,15 +22,18 @@
                             complete    
                         </button>
                     </form>
-                {% endif %}
-                {% if task.datecompleted != null %}
+                {% else %}
                     <a href="{% url 'taskdelete' task.id %}" class="btn-modal">delete</a>
                 {% endif %}
             </div>
-            <h2>{{task.title}}</h2>
-            <p>{{task.description|truncatechars:100}}</p>
-            <h5>Made for {{task.user.username}} on {{task.created|date:'M/d/Y'}}</h5>
-            <a href="{% url 'task' %}?id={{task.id}}" class="btn-modal">see more</a>
+            <div class="main-card">
+                <h2>{{task.title}}</h2>
+                <p>{{task.description|truncatechars:400}}</p>
+            </div>
+            <div class="footer-card">
+                <h5>Made for {{task.user.username}} on {{task.created|date:'M/d/Y'}}</h5>
+                <a href="{% url 'task' %}?id={{task.id}}" class="btn-modal">see more</a>
+            </div>
             {% comment %} <button name="value" value="{{task.id}}" class="btn-modal">see more</button> {% endcomment %}
         </div>
         {% endfor %}

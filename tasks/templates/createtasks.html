@@ -1,28 +1,43 @@
 {% extends 'display.html' %}
+{% block css %}
+    {% load static %}   
+    <link rel="stylesheet" href="{% static 'tasks/forms-createedit.css' %}">
+{% endblock css %}
+{% block logo %}
+<h1>Create tasks</h1>
+{% endblock logo %}
 {% block content %}
-    <h1>Create tasks</h1>
     {% if error %}
         <p>{{error}}</p>
     {% endif %}
-    <form method="post">
-        {% csrf_token %}    
-        <div class="inputbox">
-            <input type="text" name="Title" id="Title" required >
-            <label for="">Title</label>
-        </div>
-        <div class="inputbox">
-            <textarea name="description" id="description" cols="40" rows="10"></textarea>
-            <label for="">Description</label>
-        </div>
-        <div class="inputbox">
-            <label for="">Important</label>
-            <select name="important" id="important" required>
-                <option value="" selected disabled hidden>Choose here</option>
-                <option value="1">Low</option>
-                <option value="2">Medium</option>
-                <option value="3">High</option>
-            </select>
-        </div>
-        <button>Create tasks</button>
-    </form>
+    <div class="content-form">
+        <form method="post">
+            {% csrf_token %}   
+            <div class="content-info">
+                <h2 class="titlemain">Create tasks</h2>
+                <div class="inputbox">
+                    <label for="">Title</label>
+                    <input type="text" name="Title" id="Title" required >
+                </div>
+                <div class="inputbox text">
+                    <label for="">Description</label>
+                    <div class="textarea-contain">
+                        <textarea name="description" id="description" cols="40" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <label for="">Important</label>
+                    <select name="important" id="important" required>
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                    </select>
+                </div>
+                <div class="btn">
+                    <button>Create tasks</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock content %}

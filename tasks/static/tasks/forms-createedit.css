@@ -1,0 +1,102 @@
+textarea{
+    resize: none;
+}
+.content-form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 91vh;
+}
+
+.content-info{
+    width: 550px;
+    height: 600px;
+    margin: 15px;
+    border-radius: 15px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px rgb(0,0,0);
+}
+
+.inputbox{
+    width: 90%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 20px;
+}
+.text{
+    height: 200px;
+}
+.inputbox label{
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.inputbox input, .inputbox select{
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0 35px 10px 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+
+.inputbox textarea, .textarea-contain{
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 10px 35px 20px 5px;
+}
+
+.textarea-contain{
+    overflow: hidden;
+}
+
+button{
+    font-size: 18px;
+    width: 150px;
+    height: 45px;
+    border-style: none;
+    background-color: rgb(65, 165, 188);
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 500ms ease;
+}
+
+button:hover{
+    background-color: rgb(129, 41, 192);
+}
+
+.inputbox input[type="checkbox"]{
+    width: 15px;
+}
+
+.titlebox{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.titlemain{
+    font-size: 2.5em;
+    font-weight: 800;
+}
+
+.link{
+    font-size: 20px;
+    padding: 20px;
+}

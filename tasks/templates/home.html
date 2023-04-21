@@ -1,9 +1,28 @@
 {% extends 'display.html' %}
+{% block css %}
+{% load static %}   
+<link rel="stylesheet" href="{% static 'tasks/home.css' %}">
+{% endblock css %}
+{% block logo %}
+<h1>home</h1>
+{% endblock logo %}
 {% block content %}
-    <h1>home</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui consequatur cumque possimus labore, dolore fugiat necessitatibus voluptatem repudiandae, eaque quas eligendi ab esse ipsa sed rerum repellendus natus molestias ullam?
-    Nostrum quo explicabo molestiae, tempore iusto repellendus aliquam rerum fuga quam dolorum similique laboriosam consequatur accusamus esse doloremque unde hic labore. Similique laborum neque id odit accusamus distinctio animi mollitia.
-    Ad qui cupiditate ea voluptate, quo voluptates, ipsa incidunt quam excepturi porro nam praesentium natus quidem corporis iusto nisi reiciendis saepe numquam error quod in! Nemo temporibus officiis provident quisquam.
-    Recusandae, sapiente sequi pariatur provident totam minus delectus, iste itaque, tempora saepe maiores doloribus rem nostrum. Omnis, a, soluta dignissimos illo delectus architecto nisi sint obcaecati excepturi pariatur quam aspernatur.
-    Facere magni nostrum ipsum repellendus eum asperiores amet harum sit, deserunt hic officiis, soluta rem molestias a natus impedit possimus. Eum fugiat quisquam odio eveniet sequi quos rerum repellendus minus!</p>
+<div class="content_all">
+    <div class="content-home">
+        <h2>Django Apps Tasks</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui consequatur cumque possimus labore, dolore fugiat necessitatibus voluptatem repudiandae, eaque quas eligendi ab esse ipsa sed rerum repellendus natus molestias ullam?
+            Nostrum quo explicabo molestiae, tempore iusto repellendus aliquam rerum fuga quam dolorum similique laboriosam consequatur accusamus esse doloremque unde hic labore. Similique laborum neque id odit accusamus distinctio animi mollitia.
+            Ad qui cupiditate ea voluptate, quo voluptates, ipsa incidunt quam excepturi porro nam praesentium natus quidem corporis iusto nisi reiciendis saepe numquam error quod in! Nemo temporibus officiis provident quisquam.
+            Recusandae, sapiente sequi pariatur provident totam minus delectus, iste itaque, tempora saepe maiores doloribus rem nostrum. Omnis, a, soluta dignissimos illo delectus architecto nisi sint obcaecati excepturi pariatur quam aspernatur.
+            Facere magni nostrum ipsum repellendus eum asperiores amet harum sit, deserunt hic officiis, soluta rem molestias a natus impedit possimus. Eum fugiat quisquam odio eveniet sequi quos rerum repellendus minus!</p>
+            <div class="links">
+                {% if user.is_authenticated %}
+                <a href="{% url 'task' %}">Tasks</a>
+                {% else %}
+                <a href="{%  url 'login' %}">Login</a>
+                <a href="{% url 'Singup' %}">Singup</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock content %}

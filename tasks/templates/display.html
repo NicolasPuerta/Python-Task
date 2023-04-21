@@ -4,30 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {% comment %} {% load static %}
-    {% if request.path == '/signup/' %}
-    <link rel="stylesheet" href="{% static 'tasks/signup_style.css' %}">
-    {% endif %}  {% endcomment %}
+    <title>Django Apps tasks</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tasks/navbar.css' %}">
     {% block css %}
     {% endblock css %}
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            {% if user.is_authenticated %}
+    <header class="Cabezera-nav">
+        <div class="logo">
+            {% block logo %}
+            {% endblock logo %}
+        </div>
+        <div class="hamburger">
+            <h2>≡</h2>
+        </div>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% if user.is_authenticated %}
                 <li><a href="/tasks">Tasks</a></li>
                 <li><a href="/task/create">Create tasks</a></li>
                 <li><a href="/logout">Logout</a></li>
-            {% else %}
+                {% else %}
                 <li><a href="/login">Login</a></li>
                 <li><a href="/signup">Signup</a></li>
-            {% endif %}
-        </ul>
-    </nav>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
     {% block content %}
 
     {% endblock content %}
+
+    <script src="{% static 'tasks/navbar-js.js' %}"></script>
 </body>
 </html>
