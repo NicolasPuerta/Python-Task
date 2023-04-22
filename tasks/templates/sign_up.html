@@ -1,14 +1,17 @@
 {% extends 'display.html' %}
+
 {% block css %}
     {% load static %}   
     <link rel="stylesheet" href="{% static 'tasks/forms-createedit.css' %}">
 {% endblock css %}
+
 {% block logo %}
-<h1>Signup</h1>
+    <h1>Signup</h1>
 {% endblock logo %}
+
 {% block content %}
     {% if warning %}
-        <p>{{warning}}</p>
+        <p class="warning">{{warning}}</p>
     {% endif %} 
     <div class="content-form">
         <form method="post">

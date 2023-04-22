@@ -1,15 +1,16 @@
 {% extends 'display.html' %}
+
 {% block css %}
     {% load static %}   
     <link rel="stylesheet" href="{% static 'tasks/modal_task.css' %}">
     <link rel="stylesheet" href="{% static 'tasks/style-task.css' %}">
 {% endblock css %}
+
 {% block logo %}
 <h1>tasks</h1>
 {% endblock logo %}
+
 {% block content %}
-    {% comment %} <form action="" method='POST'>
-        {% csrf_token %} {% endcomment %}
     <div class="container">
         {% for task in tasks %}
         <div class="card"> 
@@ -23,6 +24,7 @@
                         </button>
                     </form>
                 {% else %}
+                    <a href="{% url 'uncompleted' task.id %}" class="btn">uncomplete</a>
                     <a href="{% url 'taskdelete' task.id %}" class="btn-modal">delete</a>
                 {% endif %}
             </div>
@@ -34,26 +36,24 @@
                 <h5>Made for {{task.user.username}} on {{task.created|date:'M/d/Y'}}</h5>
                 <a href="{% url 'task' %}?id={{task.id}}" class="btn-modal">see more</a>
             </div>
-            {% comment %} <button name="value" value="{{task.id}}" class="btn-modal">see more</button> {% endcomment %}
         </div>
         {% endfor %}
     </div>
-    {% comment %} </form> {% endcomment %}
-        {% if person %}
-            <div class="container-modal">
-                <div class="content-modal">
-                    <header class="header-modal">
-                        <h2>{{person.title}}</h2>
-                        <a href="{% url 'task' %}" class="close-modal">X</a>
-                    </header>
-                    <div class="main-modal">
-                        <p>{{person.description}}</p>
-                    </div>
-                    <footer class="footer-modal">
-                        <h5>level important is {{person.important}}, it was create on {{person.created|date:'M/d/Y'}}</h5>
-                        <a href="{% url 'taskupdate' person.id %}">Edit</a>
-                        </footer>
-                    </div>
+    {% if person %}
+        <div class="container-modal">
+            <div class="content-modal">
+                <header class="header-modal">
+                    <h2>{{person.title}}</h2>
+                    <a href="{% url 'task' %}" class="close-modal">X</a>
+                </header>
+                <div class="main-modal">
+                    <p>{{person.description}}</p>
                 </div>
-        {% endif %}
+                <footer class="footer-modal">
+                    <h5>level important is {{person.important}}, it was create on {{person.created|date:'M/d/Y'}}</h5>
+                    <a href="{% url 'taskupdate' person.id %}">Edit</a>
+                    </footer>
+                </div>
+            </div>
+    {% endif %}
 {% endblock content %}

@@ -1,14 +1,21 @@
 {% extends 'display.html' %}
+
 {% block css %}
     {% load static %}   
     <link rel="stylesheet" href="{% static 'tasks/forms-createedit.css' %}">
+    <link rel="stylesheet" href="{% static 'tasks/alerts-message.css' %}">
 {% endblock css %}
+
 {% block logo %}
-<h1>Login</h1>
+    <h1>Login</h1>
 {% endblock logo %}
+
 {% block content %}
     {% if warning %}
+    <div class="warning">
         <p>{{warning}}</p>
+        <p>X</p>
+    </div>
     {% endif %}
     <div class="content-form">
         <form method="post">
@@ -31,3 +38,6 @@
         </form>
     </div>
 {% endblock content %}
+{% block script %}
+    <script src="{% static 'tasks/alerts.js' %}"></script>
+{% endblock script %}

@@ -14,4 +14,5 @@ urlpatterns = [
     path('task/update/<int:id>/', views.Update_task, name='taskupdate'),
     path('task/complete/', views.Completed_task, name='taskcomplete'),
     path('task/delete/<int:id>/', views.Delete_task, name='taskdelete'),
+    path('task/uncompleted/<int:id>/', views.uncompleted_task, name='uncompleted'),
 ]

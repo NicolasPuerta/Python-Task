@@ -1,45 +1,63 @@
 {% extends 'display.html' %}
+
 {% block css %}
     {% load static %}   
     <link rel="stylesheet" href="{% static 'tasks/forms-createedit.css' %}">
+    <link rel="stylesheet" href="{% static 'tasks/alerts-message.css' %}">
 {% endblock css %}
+
 {% block logo %}
-<h1>Update task</h1>
+    <h1>Update task</h1>
 {% endblock logo %}
+
 {% block content %}
-<div class="content-form">
-    <form method="post">
-        {% csrf_token %}  
-        <div class="content-info">
-            <h2 class="titlemain">{{task.title|truncatechars:16|capfirst}}</h2>
-            <div class="inputbox">
-                <div class="titlebox">
-                    <label for="">Title</label>
-                    <input type="checkbox" name="Titleischange" id="Titleischange">
-                </div>
-                <input type="text" name="Title" id="Title"  >
-            </div>
-            <div class="inputbox text">
-                <div class="titlebox">
-                    <label for="">Description</label>
-                    <input type="checkbox" name="descriptionischange" id="descriptionischange">
-                </div>
-                <textarea name="description" id="description" cols="40" rows="10"></textarea >
-            </div>
-            <div class="inputbox">
-                <div class="titlebox">
-                    <label for="">Important</label>
-                    <input type="checkbox" name="importantischange" id="Titleischange">
-                </div>
-                <select name="important" id="important" required>
-                    <option value="" selected disabled hidden>Choose here</option>
-                    <option value="1">Low</option>
-                    <option value="2">Medium</option>
-                    <option value="3">High</option>
-                </select>
-            </div>
-            <button>Update tasks</button>
+    {% if error %}
+        <div class="warning">
+            <p>{{error}}</p>
+            <p>X</p>
         </div>
-    </form>
-</div>
+    {% else %}
+        <div class="tip warning">
+            <p>select the checkbox if you can change this field</p>
+            <p>X</p>
+        </div>
+    {% endif %}
+    <div class="content-form">
+        <form method="post">
+            {% csrf_token %}  
+            <div class="content-info">
+                <h2 class="titlemain">{{task.title|truncatechars:16|capfirst}}</h2>
+                <div class="inputbox">
+                    <div class="titlebox">
+                        <label for="">Title</label>
+                        <input type="checkbox" name="Titleischange" id="Titleischange">
+                    </div>
+                    <input type="text" name="Title" id="Title"  >
+                </div>
+                <div class="inputbox text">
+                    <div class="titlebox">
+                        <label for="">Description</label>
+                        <input type="checkbox" name="descriptionischange" id="descriptionischange">
+                    </div>
+                    <textarea name="description" id="description" cols="40" rows="10"></textarea >
+                </div>
+                <div class="inputbox">
+                    <div class="titlebox">
+                        <label for="">Important</label>
+                        <input type="checkbox" name="importantischange" id="Titleischange">
+                    </div>
+                    <select name="important" id="important" required>
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                    </select>
+                </div>
+                <button>Update tasks</button>
+            </div>
+        </form>
+    </div>
 {% endblock content %}
+{% block script %}
+    <script src="{% static 'tasks/alerts.js' %}"></script>
+{% endblock script %}

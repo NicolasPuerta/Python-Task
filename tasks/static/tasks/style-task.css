@@ -35,7 +35,14 @@ body{
     margin-bottom: 10px;
 }
 
-.cabecera a, .cabecera button{
+.cabecera .btn{
+    margin-top: 10px ;
+    margin-right: 10px ;
+    display: flex;
+    width: 85px;
+}
+
+.cabecera .btn-modal{
     margin-top: 10px ;
     margin-right: 10px ;
 }

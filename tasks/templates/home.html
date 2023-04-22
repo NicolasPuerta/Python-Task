@@ -1,11 +1,14 @@
 {% extends 'display.html' %}
+
 {% block css %}
-{% load static %}   
-<link rel="stylesheet" href="{% static 'tasks/home.css' %}">
+    {% load static %}   
+    <link rel="stylesheet" href="{% static 'tasks/home.css' %}">
 {% endblock css %}
+
 {% block logo %}
-<h1>home</h1>
+    <h1>home</h1>
 {% endblock logo %}
+
 {% block content %}
 <div class="content_all">
     <div class="content-home">

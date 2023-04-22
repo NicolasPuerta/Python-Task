@@ -1,14 +1,17 @@
 {% extends 'display.html' %}
+
 {% block css %}
     {% load static %}   
     <link rel="stylesheet" href="{% static 'tasks/forms-createedit.css' %}">
 {% endblock css %}
+
 {% block logo %}
-<h1>Create tasks</h1>
+    <h1>Create tasks</h1>
 {% endblock logo %}
+
 {% block content %}
     {% if error %}
-        <p>{{error}}</p>
+        <p class="warning">{{error}}</p>
     {% endif %}
     <div class="content-form">
         <form method="post">

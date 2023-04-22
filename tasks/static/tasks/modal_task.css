@@ -85,21 +85,6 @@
     margin-right: 20px;
 }
 
-.btn{
-    font-size: 15px;
-    padding: 5px;
-    height: 30px;
-    border-style: none;
-    background-color: rgb(65, 188, 90);
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 500ms ease;
-}
-
-.btn:hover{
-    background-color: rgb(192, 41, 41);
-}
 
 .btn-modal, .footer-modal a {
     text-decoration: none;
@@ -120,4 +105,20 @@
 
 .btn-modal:hover, .footer-modal a:hover {
     background-color: rgb(16, 88, 88);
+}
+
+.btn{
+    font-size: 15px;
+    padding: 5px;
+    height: 30px;
+    border-style: none;
+    background-color: rgb(65, 188, 90);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 500ms ease;
+}
+
+.btn:hover{
+    background-color: rgb(192, 41, 41);
 }
