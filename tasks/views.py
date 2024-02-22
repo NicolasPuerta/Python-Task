@@ -82,7 +82,6 @@ def uncompleted_task(request, id):
 ####  Login/register  ####
 
 def Singup(request):
-    if not request.user:
         if request.method == 'POST':
             if request.POST['password'] == request.POST['passwordConfirm']:
                 try:
@@ -95,7 +94,6 @@ def Singup(request):
             return render(request, 'sign_up.html',{'warning' : "passwords don't match"})
         else:
             return render(request, 'sign_up.html')
-    return redirect("task")
 
 @login_required
 def Logout(request):
@@ -103,7 +101,7 @@ def Logout(request):
     return redirect('home')
 
 def Login(request):
-    if not request.user:
+
         if request.method == 'POST':
             try:
                 person = UserPass.objects.get(Q(username=request.POST['username']) | Q(email=request.POST['username']))
@@ -115,5 +113,4 @@ def Login(request):
             except:
                 return render(request, 'login.html', {'warning' : 'username or email is incorrect'})
         return render(request, 'login.html')
-    return redirect("task")
 
